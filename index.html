@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Streetforward">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Streetforward</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -19,6 +23,9 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏙️</text></svg>">
+
 </head>
 <body>
 
@@ -92,6 +99,18 @@
     </div>
     <!--/ Abstract. -->
 
+    <!-- Paper Pipeline. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Pipeline</h2>
+        <image src="static/images/streetforward_pipeline_v4.pdf" width=90% style="display: block; margin: auto;"></image>
+        <p class="has-text-justified">
+          The input video is first encoded into per-frame patchified features and then processed by $L$ times alternating global- and frame-attention to aggregate information across frames. These aggregated features are directly decoded by a camera head, a depth head and a Gaussian Head to obtain poses, depth and Gaussian attributes. Then causal masked attention is introduce to form motion-aware features, which are used to estimate both forward and backward motion as well as dynamic mask for separating static and dynamic Gaussians. The final 4D scene is obtained by combining static Gaussians with dynamic Gaussians propagated across time using the predicted motion.
+        </p>
+      </div>
+    </div>
+    <!--/ Paper Pipeline. -->
+
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -122,8 +141,7 @@
         <div class="column is-8">
           <div class="content">
             <p>
-                This webpage is based on the project page for <a href="https://camp-nerf.github.io">CamP</a>. The video comparison tool is from the <a
-                href="https://dorverbin.github.io/refnerf/index.html">Ref-NeRF</a> project.</p>
+                This webpage is based on the project page for <a href="https://camp-nerf.github.io">CamP</a>.
           </div>
         </div>
       </div>
