@@ -37,7 +37,7 @@
         <div class="column has-text-centered">
           <!-- <h1 class="title is-1 publication-title">Streetforward: Perceiving Dynamic Street with Feedforward Causal Attention</h1> -->
            <h1 class="title is-1 publication-title">
-          <span style="background: linear-gradient(90deg, #6A0DAD, #4169E1, #00BFFF, #00CED1);
+          <span style="background: linear-gradient(90deg, #00CED1, #00BFFF, #4169E1, #6A0DAD );
                       -webkit-background-clip: text;
                       -webkit-text-fill-color: transparent;
                       background-clip: text;">Streetforward</span>: Perceiving Dynamic Street with Feedforward Causal Attention
@@ -97,9 +97,9 @@
         <div class="content has-text-justified">
           <p>
             Feedforward reconstruction is crucial for autonomous driving applications, where rapid scene reconstruction enables efficient utilization of large-scale driving datasets in closed-loop simulation and other downstream tasks, eliminating the need for time-consuming per-scene optimization.
-            We present \StreetForward, a pose‑free, tracker‑free, and segmentation‑free feedforward framework for dynamic street reconstruction. Building upon the alternating attention mechanism from Visual Geometry Grounded Transformer (VGGT), we propose a simple yet effective temporal mask attention module that captures dynamic motion information from image sequences and produces motion-aware latent representations. 
+            We present \StreetForward, a pose‑free and tracker‑free feedforward framework for dynamic street reconstruction. Building upon the alternating attention mechanism from Visual Geometry Grounded Transformer (VGGT), we propose a simple yet effective temporal mask attention module that captures dynamic motion information from image sequences and produces motion-aware latent representations. 
             Static content and dynamic instances are represented uniformly with 3D Gaussian Splatting, and are optimized jointly by cross‑frame rendering with spatio‑temporal consistency, allowing the model to infer per‑pixel velocities and produce high‑fidelity novel views at new poses and times. 
-            We train and evaluate our model on the Waymo Open Dataset, demonstrating superior performance on novel view synthesis and depth estimation compared to existing methods. Furthermore, zero-shot inference on CARLA dataset validates the generalization capability of our approach. 
+            We train and evaluate our model on the Waymo Open Dataset, demonstrating superior performance on novel view synthesis and depth estimation compared to existing methods. Furthermore, zero-shot inference on CARLA and other datasets validates the generalization capability of our approach. 
           </p>
         </div>
       </div>
