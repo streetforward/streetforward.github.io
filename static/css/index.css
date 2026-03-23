@@ -47,6 +47,21 @@ body {
 .publication-header .hero-body {
 }
 
+.hero-scene0 {
+    padding: 40px 0;
+}
+
+.hero-scene0 .container {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.hero-scene0 .title {
+    text-align: center;
+}
+
 .publication-title {
     font-family: 'Google Sans', sans-serif;
 }
@@ -92,11 +107,15 @@ body {
 .publication-video {
     position: relative;
     width: 100%;
-    height: 0;
-    padding-bottom: 56.25%;
+    height: 500px;
+    /* padding-bottom: 56.25%; */
+    margin: 0 auto; 
 
     overflow: hidden;
     border-radius: 10px !important;
+    max-width: 1000px; 
+    max-height: 500px; 
+
 }
 
 .publication-video iframe {
@@ -111,21 +130,42 @@ body {
 }
 
 .results-carousel {
-  overflow: hidden;
+  display: flex;
+  overflow: visible !important; 
+  align-items: center;
 }
 
+
 .results-carousel .item {
-  margin: 5px;
+  margin: 0 auto;
   overflow: hidden;
   border: 1px solid #bbb;
   border-radius: 10px;
   padding: 0;
   font-size: 0;
+  flex-shrink: 0;
+  width: 100%;   
+  max-width: 1200px; 
+
 }
 
-.results-carousel video {
-  margin: 0;
+.results-carousel .item {
+  opacity: 0.5;
+  transform: scale(0.9);
 }
+
+.results-carousel .item.is-active,
+.results-carousel .item:focus {
+  opacity: 1;
+  transform: scale(1);
+} */
+
+.results-carousel .item video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 
 
 .interpolation-panel {
