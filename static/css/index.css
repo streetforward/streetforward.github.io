@@ -149,17 +149,6 @@ body {
 
 }
 
-.results-carousel .item {
-  opacity: 0.5;
-  transform: scale(0.9);
-}
-
-.results-carousel .item.is-active,
-.results-carousel .item:focus {
-  opacity: 1;
-  transform: scale(1);
-} */
-
 .results-carousel .item video {
   width: 100%;
   height: auto;
