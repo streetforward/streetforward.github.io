@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-    content="Streetforward">
+    content="Streetforward: Perceiving Dynamic Street with Feedforward Causal Attention">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Streetforward</title>
 
@@ -45,13 +45,9 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <!-- <h1 class="title is-1 publication-title">Streetforward: Perceiving Dynamic Street with Feedforward Causal Attention</h1> -->
-           <h1 class="title is-1 publication-title">
-          <span style="background: linear-gradient(90deg, #00CED1, #00BFFF, #4169E1, #6A0DAD );
-                      -webkit-background-clip: text;
-                      -webkit-text-fill-color: transparent;
-                      background-clip: text;">Streetforward</span>: Perceiving Dynamic Street with Feedforward Causal Attention
-        </h1>
+          <h1 class="title is-1 publication-title">
+            <span class="streetforward-text">StreetForward</span>: Perceiving Dynamic Street with Feedforward Causal Attention
+          </h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block" style="margin-right: 20px;">
               <a>Zhongrui Yu</a><sup>1</sup></span>
@@ -60,7 +56,7 @@
             <span class="author-block" style="margin-right: 20px;">
               <a>Yijia Xie</a><sup>2</sup></span>
             <span class="author-block">
-              <a>Yida Wang</a><sup>1</sup></span>
+              <a href="https://wangyida.github.io">Yida Wang</a><sup>1</sup></span>
             <br>
             <span class="author-block" style="margin-right: 20px;">
               <a>Xueyang Zhang</a><sup>1</sup></span>
@@ -68,17 +64,16 @@
               <a>Yifei Zhan</a><sup>1</sup></span>
             <span class="author-block">
               <a>Kun Zhan</a><sup>1</sup></span>
-            </span>
           </div>
 
-          <div class="is-size-5 publication-authors">
+          <div class="is-size-5 publication-authors" style="margin-top: 10px;">
             <span class="author-block"><sup>1</sup>Li Auto Inc.,</span>
-            <span class="author-block"><sup>2</sup>Zhejiang University</span>
+            <span class="author-block" style="margin-left: 10px;"><sup>2</sup>Zhejiang University</span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
+              <!-- arXiv Link -->
               <span class="link-block">
                 <a href="http://arxiv.org/abs/2603.19552"
                    class="external-link button is-normal is-rounded is-dark">
@@ -89,7 +84,6 @@
                 </a>
               </span>
             </div>
-
           </div>
         </div>
       </div>
@@ -100,48 +94,35 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
+    <!-- Abstract -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
             Feedforward reconstruction is crucial for autonomous driving applications, where rapid scene reconstruction enables efficient utilization of large-scale driving datasets in closed-loop simulation and other downstream tasks, eliminating the need for time-consuming per-scene optimization.
-            We present \StreetForward, a pose‑free and tracker‑free feedforward framework for dynamic street reconstruction. Building upon the alternating attention mechanism from Visual Geometry Grounded Transformer (VGGT), we propose a simple yet effective temporal mask attention module that captures dynamic motion information from image sequences and produces motion-aware latent representations. 
-            Static content and dynamic instances are represented uniformly with 3D Gaussian Splatting, and are optimized jointly by cross‑frame rendering with spatio‑temporal consistency, allowing the model to infer per‑pixel velocities and produce high‑fidelity novel views at new poses and times. 
-            We train and evaluate our model on the Waymo Open Dataset, demonstrating superior performance on novel view synthesis and depth estimation compared to existing methods. Furthermore, zero-shot inference on CARLA and other datasets validates the generalization capability of our approach. 
+            We present <span class="streetforward-text">StreetForward</span>, a pose-free and tracker-free feedforward framework for dynamic street reconstruction. Building upon the alternating attention mechanism from Visual Geometry Grounded Transformer (VGGT), we propose a simple yet effective temporal mask attention module that captures dynamic motion information from image sequences and produces motion-aware latent representations.
+            Static content and dynamic instances are represented uniformly with 3D Gaussian Splatting, and are optimized jointly by cross-frame rendering with spatio-temporal consistency, allowing the model to infer per-pixel velocities and produce high-fidelity novel views at new poses and times.
+            We train and evaluate our model on the Waymo Open Dataset, demonstrating superior performance on novel view synthesis and depth estimation compared to existing methods. Furthermore, zero-shot inference on CARLA and other datasets validates the generalization capability of our approach.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
 
-    <!-- Paper Pipeline. -->
+    <!-- Pipeline -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Pipeline</h2>
-        <image src="./static/images/streetforward_pipeline_v4.png" width=90% style="display: block; margin: auto;"></image>
-        <p class="has-text-justified" style="margin-top: 30px">
-          The input video is first encoded into per-frame patchified features and then processed by L times alternating global- and frame-attention to aggregate information across frames. These aggregated features are directly decoded by a camera head, a depth head and a Gaussian Head to obtain poses, depth and Gaussian attributes. Then causal masked attention is introduce to form motion-aware features, which are used to estimate both forward and backward motion as well as dynamic mask for separating static and dynamic Gaussians. The final 4D scene is obtained by combining static Gaussians with dynamic Gaussians propagated across time using the predicted motion.
+        <img src="./static/images/streetforward_pipeline_v4.svg" class="pipeline-img" alt="StreetForward Pipeline">
+        <p class="has-text-justified" style="margin-top: 30px; line-height: 1.7; color: #444;">
+          The input video is first encoded into per-frame patchified features and then processed by L times alternating global- and frame-attention to aggregate information across frames. These aggregated features are directly decoded by a camera head, a depth head and a Gaussian Head to obtain poses, depth and Gaussian attributes. Then causal masked attention is introduced to form motion-aware features, which are used to estimate both forward and backward motion as well as dynamic mask for separating static and dynamic Gaussians. The final 4D scene is obtained by combining static Gaussians with dynamic Gaussians propagated across time using the predicted motion.
         </p>
       </div>
     </div>
 
-    <!-- Paper video. -->
-    <!-- <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="./static/videos/streetforward-2.mp4"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div> -->
-    <!--/ Paper video. -->
-
-
   </div>
 </section>
+
 
 <section class="hero is-small">
   <div class="hero-scene0">
@@ -176,38 +157,67 @@
     </div>
   </div>
 
-  <div class="columns is-centered has-text-centered">
-  <div class="column is-four-fifths">
-    <h2 class="title is-3">More Results</h2>
-    <div class="publication-video">
-      <iframe src="./static/videos/more_datasets.mp4"
-              frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <div class="columns is-centered has-text-centered" style="padding: 40px 0;">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">More Results</h2>
+      <div class="publication-video">
+        <video autoplay controls muted loop playsinline>
+          <source src="./static/videos/more_datasets.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
   </div>
 </section>
-
 
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <!-- <pre><code>/code></pre> -->
+    <pre><code>.</code></pre>
   </div>
 </section>
 
 
 <footer class="footer">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8">
-          <div class="content">
-            <p>
-                This webpage is based on the project page for <a href="https://nerfies.github.io/">nerfies</a>.
-          </div>
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            This webpage template is based on <a href="https://nerfies.github.io/">Nerfies</a>.
+          </p>
         </div>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
+
+<script>
+function copyBibtex() {
+  var code = document.getElementById('bibtex-code').innerText;
+  navigator.clipboard.writeText(code).then(function() {
+    var btn = document.querySelector('.btn-copy-bibtex');
+    btn.textContent = 'Copied!';
+    setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+  });
+}
+
+// Fade-in on scroll
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.section .column.is-four-fifths, .hero-scene0 .container, #BibTeX .content').forEach(function(el) {
+    observer.observe(el);
+  });
+});
+</script>
 
 </body>
 </html>

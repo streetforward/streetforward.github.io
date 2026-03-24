@@ -49,6 +49,20 @@ $(document).ready(function() {
     	});
     }
 
+    // Recalculate carousel dimensions on window resize/zoom
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        var el = document.querySelector('#results-carousel');
+        if (el && el.bulmaCarousel) {
+          var slider = el.bulmaCarousel;
+          slider._setDimensions();
+          slider._transitioner.init().apply(true, slider._setHeight.bind(slider));
+        }
+      }, 200);
+    });
+
     // Access to bulmaCarousel instance of an element
     var element = document.querySelector('#my-element');
     if (element && element.bulmaCarousel) {
