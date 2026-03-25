@@ -5,6 +5,49 @@ html {
 
 body {
   font-family: 'Noto Sans', sans-serif;
+  background-color: #f4f6fb;
+  font-size: 14px;
+}
+
+/* ===== Section Card Block ===== */
+.section-card {
+  background: #fff;
+  border: 1px solid rgba(52, 85, 120, 0.08);
+  border-radius: 14px;
+  padding: 2rem 2.2rem;
+  box-shadow:
+    0 1px 3px rgba(52, 85, 120, 0.04),
+    0 4px 12px rgba(52, 85, 120, 0.06),
+    0 8px 24px rgba(52, 85, 120, 0.02);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.section-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00CED1, #4169E1, #6A0DAD);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.section-card:hover {
+  box-shadow:
+    0 2px 6px rgba(52, 85, 120, 0.06),
+    0 8px 20px rgba(52, 85, 120, 0.08),
+    0 16px 40px rgba(52, 85, 120, 0.04);
+  transform: translateY(-3px);
+  border-color: rgba(97, 182, 242, 0.15);
+}
+
+.section-card:hover::before {
+  opacity: 1;
 }
 
 /* Fade-in animation */
@@ -29,16 +72,26 @@ body {
   background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 30%, #f5f0ff 70%, #fff 100%);
 }
 
+.hero .hero-body {
+  padding-top: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.hero .hero-body > .container {
+  max-width: 960px;
+}
+
 .publication-title {
   font-family: 'Google Sans', sans-serif;
-  font-size: 2.5rem;
-  line-height: 1.3;
-  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin-bottom: 0.6rem;
 }
 
 .publication-authors {
   font-family: 'Google Sans', sans-serif;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
 }
 
 .publication-authors a {
@@ -83,33 +136,38 @@ body {
 /* ===== Section Styling ===== */
 .section {
   position: relative;
+  background-color: transparent;
 }
 
-/* Alternating section backgrounds */
-section.section:nth-of-type(odd) {
-  background-color: #fff;
-}
-
-section.section:nth-of-type(even) {
-  background-color: #f8f9fc;
+.section-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 1.5rem;
 }
 
 /* Section title with gradient underline */
 .section .title.is-3,
+.section-card .title.is-3,
 .hero-scene0 .title.is-3,
 .hero.is-small .title.is-3 {
   position: relative;
-  padding-bottom: 10px;
-  margin-bottom: 1.5rem;
+  padding-bottom: 8px;
+  margin-bottom: 1.2rem;
+  font-size: 1.3rem;
+  text-align: left;
 }
 
 .section .title.is-3::after,
+.section-card .title.is-3::after,
 .hero-scene0 .title.is-3::after,
 .hero.is-small .title.is-3::after {
   content: '';
   display: block;
-  margin: 8px auto 0;
-  width: 60px;
+  margin: 6px 0 0;
+  width: 50px;
   height: 3px;
   background: linear-gradient(90deg, #00CED1, #4169E1, #6A0DAD);
   border-radius: 2px;
@@ -117,8 +175,8 @@ section.section:nth-of-type(even) {
 
 /* ===== Abstract ===== */
 .content.has-text-justified p {
-  line-height: 1.8;
-  font-size: 1.05rem;
+  line-height: 1.7;
+  font-size: 0.95rem;
   color: #333;
 }
 
@@ -135,7 +193,7 @@ section.section:nth-of-type(even) {
 .pipeline-img {
   display: block;
   margin: 0 auto;
-  width: 90%;
+  width: 85%;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -148,7 +206,7 @@ section.section:nth-of-type(even) {
 
 /* ===== Video Carousel Section ===== */
 .hero.is-small {
-  background-color: #f8f9fc;
+  background-color: transparent;
   background-image: none;
 }
 
@@ -172,6 +230,7 @@ section.section:nth-of-type(even) {
 
 .results-carousel {
   overflow: hidden;
+  width: 100%;
 }
 
 .results-carousel .item {
@@ -219,7 +278,17 @@ section.section:nth-of-type(even) {
 
 /* ===== BibTeX Section ===== */
 #BibTeX {
-  background-color: #f8f9fc;
+  background-color: transparent;
+}
+
+.bibtex-title {
+  text-align: left;
+  margin-bottom: 0.8rem !important;
+  padding-bottom: 0 !important;
+}
+
+.bibtex-title::after {
+  display: none !important;
 }
 
 .bibtex-wrapper {
@@ -227,38 +296,40 @@ section.section:nth-of-type(even) {
 }
 
 #BibTeX pre {
-  background: #fff;
+  background: #f5f7fa;
   color: #333;
-  border-radius: 12px;
-  padding: 1.5rem;
-  font-size: 0.9rem;
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  font-size: 0.75rem;
   line-height: 1.6;
   overflow-x: auto;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: none;
+  border: 1px solid rgba(52, 85, 120, 0.06);
 }
 
 .btn-copy-bibtex {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #cdd6f4;
-  padding: 6px 14px;
+  background:#f5f7fa;
+  border: 1px solid rgba(52, 85, 120, 0.15);
+  color: #555;
+  padding: 4px 12px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   transition: background 0.2s ease, color 0.2s ease;
+  z-index: 1;
 }
 
 .btn-copy-bibtex:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  background: #eef1f6;
+  color: #333;
 }
 
 /* ===== Footer ===== */
 .footer {
-  background-color: #f8f9fc;
+  background-color: transparent;
   padding: 2rem 1.5rem;
 }
 
@@ -342,5 +413,15 @@ section.section:nth-of-type(even) {
 
   .publication-video {
     border-radius: 8px;
+  }
+
+  .section-card {
+    padding: 1.5rem 1.2rem;
+    border-radius: 12px;
+  }
+
+  .section-wrapper {
+    padding: 1rem 0.75rem;
+    gap: 1.2rem;
   }
 }

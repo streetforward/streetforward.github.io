@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css?v=2">
+  <link rel="stylesheet" href="./static/css/index.css?v=3">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -104,72 +104,58 @@
 
 
 <section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Feedforward reconstruction is crucial for autonomous driving applications, where rapid scene reconstruction enables efficient utilization of large-scale driving datasets in closed-loop simulation and other downstream tasks, eliminating the need for time-consuming per-scene optimization.
-            We present <span class="streetforward-text">StreetForward</span>, a pose-free and tracker-free feedforward framework for dynamic street reconstruction. Building upon the alternating attention mechanism from Visual Geometry Grounded Transformer (VGGT), we propose a simple yet effective temporal mask attention module that captures dynamic motion information from image sequences and produces motion-aware latent representations.
-            Static content and dynamic instances are represented uniformly with 3D Gaussian Splatting, and are optimized jointly by cross-frame rendering with spatio-temporal consistency, allowing the model to infer per-pixel velocities and produce high-fidelity novel views at new poses and times.
-            We train and evaluate our model on the Waymo Open Dataset, demonstrating superior performance on novel view synthesis and depth estimation compared to existing methods. Furthermore, zero-shot inference on CARLA and other datasets validates the generalization capability of our approach.
-          </p>
-        </div>
-      </div>
-    </div>
+  <div class="section-wrapper">
 
-    <!-- Pipeline -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Pipeline</h2>
-        <img src="./static/images/streetforward_pipeline_v4.svg" class="pipeline-img" alt="StreetForward Pipeline">
-        <p class="has-text-justified" style="margin-top: 30px; line-height: 1.7; color: #444;">
-          The input video is first encoded into per-frame patchified features and then processed by L times alternating global- and frame-attention to aggregate information across frames. These aggregated features are directly decoded by a camera head, a depth head and a Gaussian Head to obtain poses, depth and Gaussian attributes. Then causal masked attention is introduced to form motion-aware features, which are used to estimate both forward and backward motion as well as dynamic mask for separating static and dynamic Gaussians. The final 4D scene is obtained by combining static Gaussians with dynamic Gaussians propagated across time using the predicted motion.
+    <!-- Abstract Card -->
+    <div class="section-card">
+      <h2 class="title is-3">Abstract</h2>
+      <div class="content has-text-justified">
+        <p>
+          We present <span class="streetforward-text">StreetForward</span>, a pose-free and tracker-free feedforward framework for dynamic street reconstruction. Building upon the alternating attention mechanism from Visual Geometry Grounded Transformer (VGGT), we propose a simple yet effective temporal mask attention module that captures dynamic motion information from image sequences and produces motion-aware latent representations.
+          Static content and dynamic instances are represented uniformly with 3D Gaussian Splatting, and are optimized jointly by cross-frame rendering with spatio-temporal consistency, allowing the model to infer per-pixel velocities and produce high-fidelity novel views at new poses and times.
+          We train and evaluate our model on the Waymo Open Dataset, demonstrating superior performance on novel view synthesis and depth estimation compared to existing methods. Furthermore, zero-shot inference on CARLA and other datasets validates the generalization capability of our approach.
         </p>
       </div>
     </div>
 
-  </div>
-</section>
+    <!-- Pipeline Card -->
+    <div class="section-card">
+      <h2 class="title is-3">Pipeline</h2>
+      <img src="./static/images/streetforward_pipeline_v4.svg" class="pipeline-img" alt="StreetForward Pipeline">
+      <p class="has-text-justified" style="margin-top: 30px; line-height: 1.7; color: #444;">
+        The input video is first encoded into per-frame patchified features and then processed by L times alternating global- and frame-attention to aggregate information across frames. These aggregated features are directly decoded by a camera head, a depth head and a Gaussian Head to obtain poses, depth and Gaussian attributes. Then causal masked attention is introduced to form motion-aware features, which are used to estimate both forward and backward motion as well as dynamic mask for separating static and dynamic Gaussians. The final 4D scene is obtained by combining static Gaussians with dynamic Gaussians propagated across time using the predicted motion.
+      </p>
+    </div>
 
-
-<section class="hero is-small">
-  <div class="hero-scene0">
-    <div class="container">
-      <h2 class="title is-3">Videos</h2>
+    <!-- Videos Card -->
+    <div class="section-card">
+      <h2 class="title is-3">Qualitative Comparison</h2>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-scene0">
           <video poster="" id="scene0" autoplay controls muted loop playsinline>
-            <source src="./static/videos/scene0.mp4"
-                    type="video/mp4">
+            <source src="./static/videos/scene0.mp4" type="video/mp4">
           </video>
         </div>
         <div class="item item-scene1">
           <video poster="" id="scene1" autoplay controls muted loop playsinline>
-            <source src="./static/videos/scene1.mp4"
-                    type="video/mp4">
+            <source src="./static/videos/scene1.mp4" type="video/mp4">
           </video>
         </div>
         <div class="item item-scene2">
           <video poster="" id="scene2" autoplay controls muted loop playsinline>
-            <source src="./static/videos/scene2.mp4"
-                    type="video/mp4">
+            <source src="./static/videos/scene2.mp4" type="video/mp4">
           </video>
         </div>
         <div class="item item-scene3">
           <video poster="" id="scene3" autoplay controls muted loop playsinline>
-            <source src="./static/videos/scene3.mp4"
-                    type="video/mp4">
+            <source src="./static/videos/scene3.mp4" type="video/mp4">
           </video>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="columns is-centered has-text-centered" style="padding: 40px 0;">
-    <div class="column is-four-fifths">
+    <!-- More Results Card -->
+    <div class="section-card">
       <h2 class="title is-3">More Results</h2>
       <div class="publication-video">
         <video autoplay controls muted loop playsinline>
@@ -177,14 +163,25 @@
         </video>
       </div>
     </div>
-  </div>
-</section>
 
+    <!-- BibTeX Card -->
+    <div class="section-card" id="BibTeX">
+      <h2 class="title is-5 bibtex-title">BibTeX</h2>
+      <div class="bibtex-wrapper">
+        <button class="btn-copy-bibtex" onclick="copyBibtex()">Copy</button>
+        <pre><code id="bibtex-code">@misc{yu2026streetforwardperceivingdynamicstreet,
+      title={StreetForward: Perceiving Dynamic Street with Feedforward Causal Attention}, 
+      author={Zhongrui Yu and Zhao Wang and Yijia Xie and Yida Wang and Xueyang Zhang and Yifei Zhan and Kun Zhan},
+      year={2026},
+      eprint={2603.19552},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2603.19552}, 
+}
+        </code></pre>
+      </div>
+    </div>
 
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>.</code></pre>
   </div>
 </section>
 
@@ -208,7 +205,7 @@ function copyBibtex() {
   var code = document.getElementById('bibtex-code').innerText;
   navigator.clipboard.writeText(code).then(function() {
     var btn = document.querySelector('.btn-copy-bibtex');
-    btn.textContent = 'Copied!';
+    btn.textContent = 'Copied';
     setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
   });
 }
@@ -224,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.section .column.is-four-fifths, .hero-scene0 .container, #BibTeX .content').forEach(function(el) {
+  document.querySelectorAll('.section-card').forEach(function(el) {
     observer.observe(el);
   });
 });
