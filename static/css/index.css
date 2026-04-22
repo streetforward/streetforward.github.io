@@ -401,6 +401,114 @@ body {
   border-radius: 5px;
 }
 
+/* ===== Simple Video Gallery (WorldGen-style) ===== */
+.gallery-container {
+  position: relative;
+  padding: 0 48px;
+}
+
+.gallery-scroller {
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.demo-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.demo-item {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+.demo-item video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(52, 85, 120, 0.15);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  z-index: 10;
+  color: #555;
+  padding: 0;
+}
+
+.gallery-arrow:hover {
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: #333;
+}
+
+.gallery-arrow.prev { left: 0; }
+.gallery-arrow.next { right: 0; }
+
+.gallery-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ===== Qualitative Comparison Tabs ===== */
+.qc-tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: 0 auto 1.8rem;
+  background: #f0f2f7;
+  border-radius: 50px;
+  padding: 4px;
+  width: fit-content;
+}
+
+.qc-tab-btn {
+  padding: 0.45rem 1.3rem;
+  border: none;
+  background: transparent;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #888;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.qc-tab-btn.active {
+  background: #fff;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(52, 85, 120, 0.12);
+}
+
+.qc-tab-btn:hover:not(.active) {
+  color: #555;
+}
+
+.qc-tab-panel {
+  display: none;
+}
+
+.qc-tab-panel.active {
+  display: block;
+  animation: fadeInUp 0.35s ease-out;
+}
+
 /* ===== Responsive adjustments ===== */
 @media screen and (max-width: 768px) {
   .publication-title {

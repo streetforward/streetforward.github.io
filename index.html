@@ -130,37 +130,57 @@
     <!-- Videos Card -->
     <div class="section-card">
       <h2 class="title is-3">Qualitative Comparison</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-scene0">
+
+      <div class="qc-tab-buttons">
+        <button class="qc-tab-btn active" onclick="showQCTab(this, 'qc-spatial')">Spatial Extrapolation</button>
+        <button class="qc-tab-btn" onclick="showQCTab(this, 'qc-temporal')">Temporal Interpolation</button>
+        <button class="qc-tab-btn" onclick="showQCTab(this, 'qc-more')">More Results</button>
+      </div>
+
+      <div id="qc-spatial" class="qc-tab-panel active">
+        <div class="publication-video">
           <video poster="" id="scene0" autoplay controls muted loop playsinline>
             <source src="./static/videos/scene0.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-scene1">
-          <video poster="" id="scene1" autoplay controls muted loop playsinline>
-            <source src="./static/videos/scene1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-scene2">
-          <video poster="" id="scene2" autoplay controls muted loop playsinline>
-            <source src="./static/videos/scene2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-scene3">
-          <video poster="" id="scene3" autoplay controls muted loop playsinline>
-            <source src="./static/videos/scene3.mp4" type="video/mp4">
-          </video>
+      </div>
+
+      <div id="qc-temporal" class="qc-tab-panel">
+        <div class="gallery-container">
+          <button class="gallery-arrow prev" aria-label="Previous">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <div class="gallery-scroller">
+            <div id="temporal-grid" class="demo-grid">
+              <div class="demo-item">
+                <video poster="" id="scene1" autoplay controls muted loop playsinline>
+                  <source src="./static/videos/scene1.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="demo-item">
+                <video poster="" id="scene2" autoplay controls muted loop playsinline>
+                  <source src="./static/videos/scene2.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="demo-item">
+                <video poster="" id="scene3" autoplay controls muted loop playsinline>
+                  <source src="./static/videos/scene3.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+          <button class="gallery-arrow next" aria-label="Next">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
         </div>
       </div>
-    </div>
 
-    <!-- More Results Card -->
-    <div class="section-card">
-      <h2 class="title is-3">More Results</h2>
-      <div class="publication-video">
-        <video autoplay controls muted loop playsinline>
-          <source src="./static/videos/more_datasets.mp4" type="video/mp4">
-        </video>
+      <div id="qc-more" class="qc-tab-panel">
+        <div class="publication-video">
+          <video autoplay controls muted loop playsinline>
+            <source src="./static/videos/more_datasets.mp4" type="video/mp4">
+          </video>
+        </div>
       </div>
     </div>
 
@@ -205,6 +225,52 @@ function copyBibtex() {
     btn.textContent = 'Copied';
     setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
   });
+}
+
+function showQCTab(btn, panelId) {
+  document.querySelectorAll('.qc-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.qc-tab-panel').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  var panel = document.getElementById(panelId);
+  panel.classList.add('active');
+
+  panel.querySelectorAll('video').forEach(function(v) {
+    v.currentTime = 0;
+    v.play().catch(function(){});
+  });
+
+  if (panelId === 'qc-temporal') {
+    setTimeout(function() {
+      var container = document.querySelector('#qc-temporal .gallery-container');
+      if (container) setupGallery(container);
+    }, 0);
+  }
+}
+
+function setupGallery(container) {
+  var grid = container.querySelector('.demo-grid');
+  var prevBtn = container.querySelector('.gallery-arrow.prev');
+  var nextBtn = container.querySelector('.gallery-arrow.next');
+  var items = grid ? grid.querySelectorAll('.demo-item') : [];
+
+  if (!grid || !prevBtn || !nextBtn || items.length === 0) return;
+
+  var itemCount = items.length;
+  var currentIndex = parseInt(grid.dataset.index || '0');
+
+  function scrollAmount() { return items[0].offsetWidth; }
+
+  function goTo(index) {
+    currentIndex = Math.max(0, Math.min(index, itemCount - 1));
+    grid.dataset.index = currentIndex;
+    grid.style.transform = 'translateX(-' + (currentIndex * scrollAmount()) + 'px)';
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= itemCount - 1;
+  }
+
+  prevBtn.onclick = function() { goTo(currentIndex - 1); };
+  nextBtn.onclick = function() { goTo(currentIndex + 1); };
+  goTo(currentIndex);
 }
 
 // Fade-in on scroll
