@@ -484,8 +484,8 @@ body {
 }
 
 .gallery-dot.active {
-  background: #4169E1;
-  transform: scale(1.25);
+  background: #d0d5e0;
+  transform: scale(1.6);
 }
 
 /* ===== Qualitative Comparison Tabs ===== */
