@@ -465,6 +465,29 @@ body {
   pointer-events: none;
 }
 
+.gallery-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.gallery-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d0d5e0;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.gallery-dot.active {
+  background: #4169E1;
+  transform: scale(1.25);
+}
+
 /* ===== Qualitative Comparison Tabs ===== */
 .qc-tab-buttons {
   display: flex;
